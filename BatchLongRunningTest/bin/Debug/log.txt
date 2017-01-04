@@ -1,0 +1,35 @@
+[2017-01-04 13:13:51 DEBUG BatchLongRunningTest.ResizePools] Starting to scale Up to 1000
+[2017-01-04 13:13:52 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:14:52 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:15:53 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:16:53 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:17:53 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:20:50 DEBUG BatchLongRunningTest.ResizePools] Starting to scale Up to 1000
+[2017-01-04 13:20:51 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:20:51 DEBUG BatchLongRunningTest.ResizePools] Starting to scale Down to 0
+[2017-01-04 13:21:51 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:22:51 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:23:52 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:24:52 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:25:52 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:26:52 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:28:33 DEBUG BatchLongRunningTest.ResizePools] Starting to scale Up to 1000
+[2017-01-04 13:28:33 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:29:34 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:30:34 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:31:31 INFO  BatchLongRunningTest.ResizePools] Completed scaling Up to 1000, it took 00:02:33.1844878
+[2017-01-04 13:31:31 DEBUG BatchLongRunningTest.ResizePools] Starting to scale Down to 0
+[2017-01-04 13:31:34 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:32:34 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:33:34 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:34:34 INFO  BatchLongRunningTest.ResizePools] Completed scaling Down to 0, it took 00:03:03.4430733
+[2017-01-04 13:34:34 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:35:34 DEBUG BatchLongRunningTest.ResizePools] Starting to scale Up to 1000
+[2017-01-04 13:35:43 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:38:27 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:40:50 INFO  BatchLongRunningTest.ResizePools] Completed scaling Down to 0, it took 00:02:22.8777259
+[2017-01-04 13:44:23 INFO  BatchLongRunningTest.ResizePools] Completed scaling Up to 1000, it took 00:02:32.7166406
+[2017-01-04 13:47:27 INFO  BatchLongRunningTest.ResizePools] Completed scaling Down to 0, it took 00:03:04.0447193
+[2017-01-04 13:48:27 INFO  BatchLongRunningTest.MonitorPool] Pool is fully allocated
+[2017-01-04 13:51:00 INFO  BatchLongRunningTest.ResizePools] Completed scaling Up to 1000, it took 00:02:32.6721220
+[2017-01-04 13:53:24 INFO  BatchLongRunningTest.ResizePools] Completed scaling Down to 0, it took 00:02:23.4672099
