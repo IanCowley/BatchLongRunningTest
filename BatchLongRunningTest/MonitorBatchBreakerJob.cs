@@ -42,7 +42,7 @@ namespace BatchLongRunningTest
         {
             var jobId = Guid.NewGuid().ToString();
 
-            _logger.Info($"Scheduling job for task type {taskType} with job id {jobId}");
+            _logger.Info($"Scheduling job for task type {taskType} with job id {jobId} into pool {poolId}");
 
             using (var batchClient = BatchHelper.GetBatchClient())
             {

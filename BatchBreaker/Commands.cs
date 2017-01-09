@@ -2,8 +2,8 @@
 {
     public class Commands
     {
-        public const string ThrowCommand = "throw";
-        public const string Wait = "test";
-        public const string ShutDown = "shutdown";
+        public const string ThrowCommand = "Throw";
+        public const string WaitForNodeReboot = "WaitForReboot";
+        public const string ShutDown = "ShutDown";
     }
 }

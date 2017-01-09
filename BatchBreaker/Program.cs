@@ -13,7 +13,7 @@ namespace BatchBreaker
 
             switch (commandToRun)
             {
-                case Commands.Wait:
+                case Commands.WaitForNodeReboot:
                 {
                     while (true)
                     {
@@ -36,6 +36,7 @@ namespace BatchBreaker
                 }
             }
 
+            Console.WriteLine("Command not found, could be you've renamed the command!");
             return 0;
         }
     }
