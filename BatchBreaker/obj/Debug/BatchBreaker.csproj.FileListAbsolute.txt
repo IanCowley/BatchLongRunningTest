@@ -1,0 +1,6 @@
+D:\Sandbox\BatchLongRunningTest\BatchBreaker\bin\Debug\BatchBreaker.exe.config
+D:\Sandbox\BatchLongRunningTest\BatchBreaker\bin\Debug\BatchBreaker.exe
+D:\Sandbox\BatchLongRunningTest\BatchBreaker\bin\Debug\BatchBreaker.pdb
+D:\Sandbox\BatchLongRunningTest\BatchBreaker\obj\Debug\BatchBreaker.exe
+D:\Sandbox\BatchLongRunningTest\BatchBreaker\obj\Debug\BatchBreaker.pdb
+D:\Sandbox\BatchLongRunningTest\BatchBreaker\obj\Debug\BatchBreaker.csprojResolveAssemblyReference.cache

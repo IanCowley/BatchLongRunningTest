@@ -1,6 +1,3 @@
-D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\bin\Debug\BatchLongRunningTest.exe.config
-D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\bin\Debug\BatchLongRunningTest.exe
-D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\bin\Debug\BatchLongRunningTest.pdb
 D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\bin\Debug\log4net.dll
 D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\bin\Debug\Microsoft.Azure.Batch.dll
 D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\bin\Debug\Microsoft.Azure.KeyVault.Core.dll
@@ -58,6 +55,11 @@ D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\bin\Debug\ko\System.Spatial
 D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\bin\Debug\ru\System.Spatial.resources.dll
 D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\bin\Debug\zh-Hans\System.Spatial.resources.dll
 D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\bin\Debug\zh-Hant\System.Spatial.resources.dll
-D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\obj\Debug\BatchLongRunningTest.exe
-D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\obj\Debug\BatchLongRunningTest.pdb
 D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\obj\Debug\BatchLongRunningTest.csprojResolveAssemblyReference.cache
+D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\bin\Debug\BatchBreaker.exe
+D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\bin\Debug\BatchBreaker.pdb
+D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\bin\Debug\Run.exe.config
+D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\bin\Debug\Run.exe
+D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\bin\Debug\Run.pdb
+D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\obj\Debug\Run.exe
+D:\Sandbox\BatchLongRunningTest\BatchLongRunningTest\obj\Debug\Run.pdb

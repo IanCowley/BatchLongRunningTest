@@ -10,10 +10,11 @@ namespace BatchLongRunningTest
         const string PoolName = "LongRunningPool1A";
         const int Expected = 1000;
         const int HeartBeatIntervalInSeconds = 600;
+        const int UnderAllocatedCheckAgainTimeoutSeconds = 60;
 
         DateTime _lastHeartBeat = DateTime.MinValue;
 
-        public void StartMonitoringPool()
+        public void StartMonitoring()
         {
             while (true)
             {
@@ -34,6 +35,8 @@ namespace BatchLongRunningTest
                     if (IsUnderAllocated(allocation))
                     {
                         _logger.Info($"The pool is not fully allocated, we're looking to get {Expected}, but we're only getting {allocation}");
+                        Thread.Sleep(TimeSpan.FromSeconds(UnderAllocatedCheckAgainTimeoutSeconds));
+                        DoMonitor();
                     }
                     else if (HeartBeatIsDue())
                     {
