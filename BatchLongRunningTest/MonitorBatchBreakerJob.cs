@@ -27,7 +27,7 @@ namespace BatchLongRunningTest
             try
             {
                 EnsureBatchBreakerUploaded();
-                var jobId = ScheduleJob(taskType, poolId);
+                var jobId = EnsureJobScheduled(taskType, poolId);
                 onJobScheduled?.Invoke(jobId);
                 DoMonitoring(jobId, poolId, taskType);
             }
@@ -38,15 +38,22 @@ namespace BatchLongRunningTest
             }
         }
 
-        string ScheduleJob(string taskType, string poolId)
+        string EnsureJobScheduled(string taskType, string poolId)
         {
-            var jobId = Guid.NewGuid().ToString();
+            var jobId = $"{taskType}_{poolId}";
+            var job = BatchHelper.GetJob(jobId);
+
+            if (job != null)
+            {
+                return jobId;
+            }
 
             _logger.Info($"Scheduling job for task type {taskType} with job id {jobId} into pool {poolId}");
 
             using (var batchClient = BatchHelper.GetBatchClient())
             {
-                var job = batchClient.JobOperations.CreateJob(jobId, new PoolInformation
+
+                job = batchClient.JobOperations.CreateJob(jobId, new PoolInformation
                 {
                     PoolId = poolId
                 });

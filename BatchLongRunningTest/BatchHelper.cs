@@ -43,5 +43,20 @@ namespace BatchLongRunningTest
                 node.Reboot(ComputeNodeRebootOption.Requeue);
             }
         }
+
+        public static CloudJob GetJob(string jobId)
+        {
+            using (var batchClient = GetBatchClient())
+            {
+                try
+                {
+                    return batchClient.JobOperations.GetJob(jobId);
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
     }
 }
