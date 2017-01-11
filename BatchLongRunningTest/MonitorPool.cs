@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
+using BatchBreaker;
 using log4net;
 
 namespace BatchLongRunningTest
@@ -7,7 +9,7 @@ namespace BatchLongRunningTest
     public class MonitorPool
     {
         readonly ILog _logger = LogManager.GetLogger(typeof(MonitorPool));
-        const string PoolName = "LongRunningPool1A";
+        public const string PoolId = "LongRunningPool1A";
         const int Expected = 1000;
         const int HeartBeatIntervalInSeconds = 600;
         const int UnderAllocatedCheckAgainTimeoutSeconds = 60;
@@ -16,10 +18,19 @@ namespace BatchLongRunningTest
 
         public void StartMonitoring()
         {
-            while (true)
+            try
             {
-                DoMonitor();
-                Thread.Sleep(TimeSpan.FromSeconds(HeartBeatIntervalInSeconds));
+                BatchHelper.EnsureTasksJobScheduled("MonitorPool_running_tasks", PoolId, Commands.Wait, Commands.Wait, 1000);
+
+                while (true)
+                {
+                    DoMonitor();
+                    Thread.Sleep(TimeSpan.FromSeconds(HeartBeatIntervalInSeconds));
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"Error monitoring pool {PoolId}", ex);
             }
         }
 
@@ -29,7 +40,7 @@ namespace BatchLongRunningTest
             {
                 try
                 {
-                    var pool = batchClient.PoolOperations.GetPool(PoolName);
+                    var pool = batchClient.PoolOperations.GetPool(PoolId);
                     var allocation = pool.CurrentDedicated ?? 0;
 
                     if (IsUnderAllocated(allocation))
@@ -38,10 +49,12 @@ namespace BatchLongRunningTest
                         Thread.Sleep(TimeSpan.FromSeconds(UnderAllocatedCheckAgainTimeoutSeconds));
                         DoMonitor();
                     }
-                    else if (HeartBeatIsDue())
+                    else
                     {
+                        var runningTaskCount = pool.ListComputeNodes().ToList().Sum(x => x.RunningTasksCount);
                         _lastHeartBeat = DateTime.Now;
                         _logger.Info($"Pool is fully allocated");
+                        _logger.Info($"Running task count is {runningTaskCount}");
                     }
                 }
                 catch (Exception ex)
@@ -50,11 +63,6 @@ namespace BatchLongRunningTest
                     throw;
                 }
             }
-        }
-
-        bool HeartBeatIsDue()
-        {
-            return (DateTime.Now - _lastHeartBeat).TotalSeconds > HeartBeatIntervalInSeconds;
         }
 
         bool IsUnderAllocated(int currentDedicated)

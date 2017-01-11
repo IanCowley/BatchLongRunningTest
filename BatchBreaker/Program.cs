@@ -13,7 +13,7 @@ namespace BatchBreaker
 
             switch (commandToRun)
             {
-                case Commands.WaitForNodeReboot:
+                case Commands.Wait:
                 {
                     while (true)
                     {
