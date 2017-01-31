@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
+using BatchBreaker;
 using log4net;
 using Microsoft.Azure.Batch;
 using Microsoft.Azure.Batch.Common;
@@ -15,6 +18,8 @@ namespace BatchLongRunningTest
         const int HeartBeatIntervalInSeconds = 10;
         public void StartMonitoring()
         {
+            Task.Run(() => BatchHelper.EnsureTasksJobScheduled("MonitorPool_running_tasks", PoolName, Commands.Wait, Commands.Wait, 1000));
+            
             while (true)
             {
                 DoResizing();
@@ -42,6 +47,14 @@ namespace BatchLongRunningTest
 
                     if (pool.AllocationState.Value != AllocationState.Steady)
                     {
+                        return;
+                    }
+
+                    var notRunningTaskCount = pool.ListComputeNodes().Count(x => x.State != ComputeNodeState.Running);
+
+                    if (notRunningTaskCount > 0)
+                    {
+                        _logger.Info($"Still not running {notRunningTaskCount} task nodes");
                         return;
                     }
 

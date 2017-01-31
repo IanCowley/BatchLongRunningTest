@@ -13,7 +13,9 @@ namespace BatchLongRunningTest
     public static class BatchHelper
     {
         public const string JobManagerTaskId = "JM";
-        const string batchBreakerFileName = "batchBreaker.exe";
+        public const string batchBreakerFileName = "batchBreaker.exe";
+        public const string batchBreakerPrefix = "batchBreaker";
+
         static readonly ILog _logger = LogManager.GetLogger(typeof(BatchHelper));
 
         public static BatchClient GetBatchClient()
@@ -55,8 +57,6 @@ namespace BatchLongRunningTest
         {
             EnsureBatchBreakerUploaded();
 
-          
-
             using (var batchClient = GetBatchClient())
             {
                 _logger.Info($"Scheduling job for task type {taskType} with job id {jobId} into pool {poolId}");
@@ -88,12 +88,12 @@ namespace BatchLongRunningTest
 
                         if (task == null)
                         {
-                            batchClient.JobOperations.AddTask(jobId, CreateTask(taskId, taskType));
+                            batchClient.JobOperations.AddTask(jobId, CreateTask(taskId, taskType, taskIndex));
                         }
                     }
                     catch (Exception)
                     {
-                        batchClient.JobOperations.AddTask(jobId, CreateTask(taskId, taskType));
+                        batchClient.JobOperations.AddTask(jobId, CreateTask(taskId, taskType, taskIndex));
                     }
                 }
             }
@@ -126,13 +126,15 @@ namespace BatchLongRunningTest
             }
         }
 
-        static CloudTask CreateTask(string taskId, string taskType)
+        static CloudTask CreateTask(string taskId, string taskType, int taskIndex)
         {
-            var batchBreakerResourceFile = new ResourceFile(
-                  AzureStorageHelper.GetBlobSasUri(batchBreakerFileName).AbsoluteUri,
-                  batchBreakerFileName);
+            string fileName = $"{batchBreakerPrefix}_{taskIndex}.exe";
 
-            return new CloudTask(taskId, $"{batchBreakerFileName} {taskType}")
+            var batchBreakerResourceFile = new ResourceFile(
+                  AzureStorageHelper.GetBlobSasUri(fileName).AbsoluteUri,
+                  fileName);
+
+            return new CloudTask(taskId, $"{fileName} {taskType}")
             {
                 RunElevated = true,
                 Constraints = new TaskConstraints(null, null, -1),

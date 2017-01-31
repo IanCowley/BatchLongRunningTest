@@ -9,33 +9,43 @@ namespace BatchLongRunningTest
         static void Main(string[] args)
         {
             log4net.Config.XmlConfigurator.Configure();
-            Task.Run(() => new MonitorPool().StartMonitoring());
+            //AzureStorageHelper.CopyFile(BatchHelper.batchBreakerFileName, "batchBreaker", 1000);
+
+            // Task.Run(() => new MonitorPool().StartMonitoring());
             Task.Run(() => new MonitorResizePools().StartMonitoring());
+            /*
+             Task.Run(() => new MonitorBatchBreakerJob().StartMonitoringJob(
+                 new MonitorBatchBreakerJob.JobDefinition
+                 {
+                     JobName = BatchBreaker.Commands.ThrowCommand,
+                     JobManagerTaskType = BatchBreaker.Commands.ThrowCommand,
+                     PoolId = "batchBreaker1"
+                 }));
 
-            Task.Run(() => new MonitorBatchBreakerJob().StartMonitoringJob(
+             Task.Run(() => new MonitorBatchBreakerJob().StartMonitoringJob(
+                 new MonitorBatchBreakerJob.JobDefinition
+                 {
+                     JobName = BatchBreaker.Commands.ShutDown,
+                     JobManagerTaskType = BatchBreaker.Commands.ShutDown,
+                     PoolId = "batchBreaker2"
+                 }));
+
+             Task.Run(() => new MonitorBatchBreakerJob().StartMonitoringJob(
                 new MonitorBatchBreakerJob.JobDefinition
                 {
-                    JobName = BatchBreaker.Commands.ThrowCommand,
-                    JobManagerTaskType = BatchBreaker.Commands.ThrowCommand,
-                    PoolId = "batchBreaker1"
+                    JobName = "Reboot",
+                    JobManagerTaskType = BatchBreaker.Commands.Wait,
+                    PoolId = "batchBreaker3",
+                    OnMonitorCycle = (jobId, poolId) => BatchHelper.RebootFirstNodeInPool(poolId)
                 }));
 
             Task.Run(() => new MonitorBatchBreakerJob().StartMonitoringJob(
-                new MonitorBatchBreakerJob.JobDefinition
-                {
-                    JobName = BatchBreaker.Commands.ShutDown,
-                    JobManagerTaskType = BatchBreaker.Commands.ShutDown,
-                    PoolId = "batchBreaker2"
-                }));
-
-            Task.Run(() => new MonitorBatchBreakerJob().StartMonitoringJob(
-               new MonitorBatchBreakerJob.JobDefinition
-               {
-                   JobName = "Reboot",
-                   JobManagerTaskType = BatchBreaker.Commands.Wait,
-                   PoolId = "batchBreaker3",
-                   OnMonitorCycle = (jobId, poolId) => BatchHelper.RebootFirstNodeInPool(poolId)
-               }));
+              new MonitorBatchBreakerJob.JobDefinition
+              {
+                  JobName = BatchBreaker.Commands.Unhandled,
+                  JobManagerTaskType = BatchBreaker.Commands.Unhandled,
+                  PoolId = "batchBreaker4"
+              }));*/
 
             Console.WriteLine("Running");
             Console.ReadLine();

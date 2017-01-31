@@ -27,6 +27,17 @@ namespace BatchLongRunningTest
             }
         }
 
+        public static void CopyFile(string blobName, string destinationName, int numberOfTimes)
+        {
+            var source = GetBlobSasUri(blobName);
+
+            for (int i = 0; i <= numberOfTimes; i++)
+            {
+                var newBlob = GetBlob($"{destinationName}_{i}.exe");
+                newBlob.StartCopy(source);
+            }
+        }
+
         public static Uri GetBlobSasUri(string blobName)
         {
             var blob = GetBlob(blobName);
