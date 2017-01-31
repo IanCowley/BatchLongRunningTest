@@ -21,6 +21,10 @@ namespace BatchBreaker
                         Thread.Sleep(TimeSpan.FromSeconds(10));
                     }
                 }
+                case Commands.Unhandled:
+                {
+                    throw new Exception("Unhandled exception");
+                }
                 case Commands.ThrowCommand:
                 {
                     return -1;
